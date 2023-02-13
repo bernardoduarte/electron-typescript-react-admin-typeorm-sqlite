@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import { GlobalStyle } from './styles/GlobalStyle'
 
 import { Admin, Resource, ListGuesser, EditGuesser } from "react-admin";
