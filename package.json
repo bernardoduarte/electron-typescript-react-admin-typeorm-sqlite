@@ -1,5 +1,5 @@
 {
-  "name": "electron-typescript-react",
+  "name": "electron-typescript-react-admin-typeorm-sqlite",
   "author": "Bernardo Duarte <bernardoeiraduarte@gmail.com>",
   "version": "0.1.0",
   "description": "An Electron boilerplate including TypeScript, React, Jest and ESLint.",
@@ -80,8 +80,8 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "name": "electron-typescript-react",
-        "executableName": "electron-typescript-react",
+        "name": "electron-typescript-react-admin-typeorm-sqlite",
+        "executableName": "electron-typescript-react-admin-typeorm-sqlite",
         "icon": "assets/icon",
         "extraResource": [
           "assets"
@@ -112,7 +112,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electron-typescript-react"
+            "name": "electron-typescript-react-admin-typeorm-sqlite"
           }
         },
         {
@@ -136,7 +136,7 @@
           "config": {
             "repository": {
               "owner": "bernardoduarte",
-              "name": "electron-typescript-react"
+              "name": "electron-typescript-react-admin-typeorm-sqlite"
             }
           }
         }
