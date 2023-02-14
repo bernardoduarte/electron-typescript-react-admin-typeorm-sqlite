@@ -1,4 +1,9 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
+import sqlite3 from 'sqlite3'
+
+const database = new sqlite3.Database('./public/db.sqlite3', (err) => {
+  if (err) console.error('Database opening error: ', err);
+});
 
 let mainWindow: BrowserWindow | null
 
@@ -17,7 +22,7 @@ function createWindow () {
     height: 700,
     backgroundColor: '#191622',
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
       contextIsolation: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
     }
