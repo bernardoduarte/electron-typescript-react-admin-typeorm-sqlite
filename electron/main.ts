@@ -1,8 +1,22 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
-import sqlite3 from 'sqlite3'
+import "reflect-metadata";
 
-const database = new sqlite3.Database('./public/db.sqlite3', (err) => {
-  if (err) console.error('Database opening error: ', err);
+import { app, BrowserWindow, ipcMain } from 'electron';
+import { DataSource } from "typeorm";
+
+import { User } from '../entities/User';
+
+const dataSource = new DataSource({
+  type: 'sqlite',
+  database: './public/db.sqlite3',
+  entities: [User],
+  synchronize: true,
+  dropSchema: true,
+});
+
+dataSource.initialize().then(() => {
+  console.log("Data Source has been initialized!")
+}).catch((err) => {
+  console.error("Error during Data Source initialization", err)
 });
 
 let mainWindow: BrowserWindow | null
@@ -42,13 +56,12 @@ async function registerListeners () {
   // ipcMain.on('message', (_, message) => {
   //   console.log(message)
   // })
-
-  ipcMain.on('sqlite-message', (event, message) => {
-      const sql = 'SELECT * FROM repositories';
-      database.all(sql, (err, rows: any) => {
-        console.log(rows);
-        event.reply('sqlite-reply', (err && err.message) || rows);
-      });
+  
+  ipcMain.on('sqlite-message', async (event, message) => {
+    const user = await dataSource.getRepository(User).save({ firstName: 'Bernardo', lastName: 'Duarte', isActive: true });
+    console.log(user);
+    const users = await dataSource.getRepository(User).find();
+    event.reply('sqlite-reply', users);
   });
 }
 
