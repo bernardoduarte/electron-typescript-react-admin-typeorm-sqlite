@@ -36,9 +36,9 @@ function createWindow () {
     height: 700,
     backgroundColor: '#191622',
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
       contextIsolation: true,
-      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     }
   })
 
