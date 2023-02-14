@@ -39,9 +39,17 @@ async function registerListeners () {
   /**
    * This comes from bridge integration, check bridge.ts
    */
-  ipcMain.on('message', (_, message) => {
-    console.log(message)
-  })
+  // ipcMain.on('message', (_, message) => {
+  //   console.log(message)
+  // })
+
+  ipcMain.on('sqlite-message', (event, message) => {
+      const sql = 'SELECT * FROM repositories';
+      database.all(sql, (err, rows: any) => {
+        console.log(rows);
+        event.reply('sqlite-reply', (err && err.message) || rows);
+      });
+  });
 }
 
 app.on('ready', createWindow)

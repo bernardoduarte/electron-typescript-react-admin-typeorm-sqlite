@@ -10,7 +10,7 @@ export const api = {
    */
 
   sendMessage: (message: string) => {
-    ipcRenderer.send('message', message)
+    ipcRenderer.send(message);
   },
 
   /**
