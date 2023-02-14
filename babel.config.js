@@ -8,7 +8,8 @@ module.exports = {
   ],
   plugins: [
     ['@babel/plugin-transform-runtime', {
-      regenerator: true
+      regenerator: true,
+      helpers: false,
     }],
     "babel-plugin-transform-typescript-metadata",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
