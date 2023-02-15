@@ -8,5 +8,6 @@ module.exports = {
   module: {
     rules: require('./rules.webpack'),
   },
-  externals: [nodeExternals(), 'reflect-metadata'],
+  externals: [nodeExternals()],
+  target: 'node',
 }
